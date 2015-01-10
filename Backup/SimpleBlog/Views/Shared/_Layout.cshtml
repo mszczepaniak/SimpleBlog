@@ -14,8 +14,7 @@
     <body>
         <header>
             <h1>
-                <a href="@Url.RouteUrl("home")">Simple Blog</a>
-                <i class="glyphicon glyphicon-bell"></i> 
+                <a href="@Url.RouteUrl("home")">Simple Blog</a> 
             </h1>
             
             @if (User.Identity.IsAuthenticated)
@@ -35,11 +34,10 @@
 
         <!-- INSERT VIEW HERE-->
         @RenderBody()
-
-    <footer>
-        &copy; @DateTime.UtcNow.Year - Me
-    </footer>
-        @Scripts.Render("~/scripts")
+        
+        <footer>
+            &copy; @DateTime.UtcNow.Year - Me
+        </footer>
         @RenderSection("Scripts", false)
     </body>
 </html>
