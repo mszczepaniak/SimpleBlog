@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Security;
 using SimpleBlog.ViewModels;
 
 namespace SimpleBlog.Controllers
@@ -13,20 +14,28 @@ namespace SimpleBlog.Controllers
             {
             });
         }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToRoute("home");
+        }
         // here goes post request
         [HttpPost]
-        public ActionResult Login(AuthLogin form)
+        public ActionResult Login(AuthLogin form, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(form);
             }
-            if (form.Username != "rainbow dash")
+            // this is the authentication
+            // this is how we say to the asp.net that the person is who he tells he is 
+            FormsAuthentication.SetAuthCookie(form.Username, true);
+            if (!string.IsNullOrWhiteSpace(returnUrl))
             {
-                ModelState.AddModelError("Username", "Username or password isn't 20% cooler.");
-                return View(form);
+                return Redirect(returnUrl);
             }
-            return Content("The form is valid!");
+            return RedirectToRoute("home");
         }
     }
 }
