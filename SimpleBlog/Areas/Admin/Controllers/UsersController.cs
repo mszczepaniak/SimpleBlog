@@ -1,5 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using NHibernate.Linq;
+using SimpleBlog.Areas.Admin.ViewModels;
 using SimpleBlog.Infrastructure;
+using SimpleBlog.Models;
 
 namespace SimpleBlog.Areas.Admin.Controllers
 {
@@ -9,7 +13,14 @@ namespace SimpleBlog.Areas.Admin.Controllers
         [SelectedTab("users")]
         public ActionResult Index()
         {
-            return View();
+            // tell nhibernate to get data, stuff it to the viewmodel
+            // and then hand it off to the view
+            return View(new UsersIndex
+            {
+                // we want to turn this query to the collection of objects in the memory
+                Users = Database.Session.Query<User>().ToList()
+            }
+                );
         }
     }
 }
