@@ -19,8 +19,12 @@ namespace SimpleBlog.Areas.Admin.Controllers
             {
                 // we want to turn this query to the collection of objects in the memory
                 Users = Database.Session.Query<User>().ToList()
-            }
-                );
+            });
+        }
+
+        public ActionResult New()
+        {
+            return View(new UsersNew {});
         }
     }
 }
