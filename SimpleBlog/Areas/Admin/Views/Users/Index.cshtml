@@ -4,6 +4,48 @@
 
 <div class="btn-toolbar">
     <!-- if u only supply an action name to url action method
-        it would assume that it is for the same controler area that the file is currently located in-->
+    it would assume that it is for the same controler area that the file is currently located in-->
     <a href="@Url.Action("new")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i>Create User</a>
 </div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Username</td>
+            <td>@user.Email</td>
+            <td>{todo}</td>
+            <td>
+                <div class="btn-group">
+                    <!--why #?
+                    in html when u do not provide valid href link
+                        it will be not displayed as a link and things will be broken-->
+                    <a href="#" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a href="#" class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-lock"></i>
+                        Reset Password
+                    </a>
+                    <a href="#" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-delete"></i>
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
