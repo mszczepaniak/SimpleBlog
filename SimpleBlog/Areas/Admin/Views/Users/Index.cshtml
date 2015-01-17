@@ -2,9 +2,8 @@
 
 <h1>Users</h1>
 
-<ul>
-    @foreach (var user in Model.Users)
-    {
-        <li>@user.Username</li>
-    }
-</ul>
+<div class="btn-toolbar">
+    <!-- if u only supply an action name to url action method
+        it would assume that it is for the same controler area that the file is currently located in-->
+    <a href="@Url.Action("new")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i>Create User</a>
+</div>
