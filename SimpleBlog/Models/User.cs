@@ -12,7 +12,7 @@ namespace SimpleBlog.Models
 
         public virtual void SetPassword(string Password)
         {
-            
+            PasswordHash = "IGNORE ME";
         }
     }
 
