@@ -1,0 +1,27 @@
+﻿<!--creating a stronly typed view-->
+@model SimpleBlog.Areas.Admin.ViewModels.UsersEdit
+
+<h1>Edit user @Model.Username</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <!--??? difference between editorfor and textboxfor method
+    I want to attach the special class to the form created by the editor
+        To do that I need low level method textbox for-->
+    <div class="form-group">
+        @Html.LabelFor(f => f.Username);
+        <!--I can pass here css class as an argument to change -->
+        <!-- Treat as identifier, in "at class", otherwise it will be treated as keyword-->
+        @Html.TextBoxFor(f => f.Username, new {@class = "form-control"})
+    </div>
+    <!--Email is the new html5 control type that adds broser element inteligence
+        on mobile it changes keyboard-->
+    <div class="form-group">
+        @Html.LabelFor(f => f.Email)
+        @Html.TextBoxFor(f => f.Email, new {@class = "form-control", type = "email"})
+    </div> 
+
+    <input type="submit" value="Update User" class="btn btn-primary"/>
+    <a href="@Url.Action("index")">or cancel</a>
+}

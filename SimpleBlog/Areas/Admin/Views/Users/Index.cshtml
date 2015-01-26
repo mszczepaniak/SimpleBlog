@@ -30,8 +30,10 @@
                 <div class="btn-group">
                     <!--why #?
                     in html when u do not provide valid href link
-                        it will be not displayed as a link and things will be broken-->
-                    <a href="#" class="btn btn-xs btn-primary">
+                    it will be not displayed as a link and things will be broken-->
+
+                    <!--edit depends on the route id parameter-->
+                    <a href="@Url.Action("edit", new{user.Id})" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
