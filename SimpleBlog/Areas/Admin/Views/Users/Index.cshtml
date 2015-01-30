@@ -37,12 +37,12 @@
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
-                    <a href="#" class="btn btn-xs btn-default">
+                    <a href="@Url.Action("resetpassword",new{user.Id})" class="btn btn-xs btn-default">
                         <i class="glyphicon glyphicon-lock"></i>
                         Reset Password
                     </a>
-                    <a href="#" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-delete"></i>
+                    <a href="@Url.Action("delete", new{user.Id})" class="btn btn-xs btn-danger" data-post="Are u sure u want to delete this @user.Username?">
+                        <i class="glyphicon glyphicon-remove"></i>
                         Delete
                     </a>
                 </div>

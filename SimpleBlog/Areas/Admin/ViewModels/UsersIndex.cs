@@ -34,7 +34,6 @@ namespace SimpleBlog.Areas.Admin.ViewModels
 
     public class UsersResetPassword
     {
-        [Required, MaxLength(128)]
         public string Username { get; set; }
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }

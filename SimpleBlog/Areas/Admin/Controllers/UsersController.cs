@@ -95,7 +95,7 @@ namespace SimpleBlog.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-            return View(new UsersResetPassword
+            return View(new UsersResetPassword 
             {
                 Username = user.Username,
             });
@@ -120,6 +120,18 @@ namespace SimpleBlog.Areas.Admin.Controllers
             user.SetPassword(form.Password);
             Database.Session.Update(user);
 
+            return RedirectToAction("index");
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var user = Database.Session.Load<User>(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            Database.Session.Delete(user);
             return RedirectToAction("index");
         }
     }
