@@ -62,8 +62,6 @@ namespace SimpleBlog.Areas.Admin.Controllers
             });
         }
 
-
-
         [HttpPost]
         public ActionResult Edit(int id, UsersEdit form)
         {
@@ -86,6 +84,42 @@ namespace SimpleBlog.Areas.Admin.Controllers
             user.Email = form.Email;
             Database.Session.Update(user);
             
+            return RedirectToAction("index");
+        }
+
+        public ActionResult ResetPassword(int id)
+        {
+            var user = Database.Session.Load<User>(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new UsersResetPassword
+            {
+                Username = user.Username,
+            });
+        }
+        [HttpPost]
+        public ActionResult ResetPassword(int id, UsersResetPassword form)
+        {
+            var user = Database.Session.Load<User>(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            form.Username = user.Username;
+
+            
+            if (!ModelState.IsValid)
+            {
+                return View(form);
+            }
+            
+            user.SetPassword(form.Password);
+            Database.Session.Update(user);
+
             return RedirectToAction("index");
         }
     }
